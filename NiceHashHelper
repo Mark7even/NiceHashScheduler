@@ -1,0 +1,17 @@
+param ([string]$action = "Start")
+
+if($action -eq "Start")
+{
+    Write-Host "Starting.."
+    Start-Process "C:\Program Files\NiceHash\NiceHashQuickMiner\NiceHashQuickMiner.exe"
+} 
+elseif ($action -eq "Stop")
+{
+    Write-Host "Stopping.."
+    Stop-Process -Name *NiceHash*            # The main program
+    Stop-Process -Name *excavator*           # The GPU miner
+    Stop-Process -Name *xmr-stak-cpu*        # The CPU miner
+}
+else {
+    Write-Host "Invalid action : Please choose either Start or Stop with the action param"
+}
